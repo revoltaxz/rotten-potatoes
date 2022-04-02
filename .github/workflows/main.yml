@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
       - name: Docker build and push image
-        uses: docker/build-push@v2.7.0
+        uses: docker/build-push@v2
         with:
           context: ./src ## Folder of project with files to build image
           file: ./src/Dockerfile ## Dockerfile path
