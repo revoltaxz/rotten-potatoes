@@ -1,4 +1,4 @@
-name: CI-CP
+name: CI-CD
 on:
   push:
     branches: [ main ]
@@ -16,5 +16,15 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+      - name: Docker build and push image
+        uses: docker/build-push@v2.7.0
+        with:
+          context: ./src ## Folder of project with files to build image
+          file: ./src/Dockerfile ## Dockerfile path
+          push: true
+          tags: |
+            revoltaxz/rotten-potatoes:latest
+            revoltaxz/rotten-potatoes:${{ github.run_number }}
 
     
